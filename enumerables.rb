@@ -16,6 +16,9 @@ module Enumerable
   end
 
   def my_select
+    selected = []
+    self.my_each { |i| selected << i unless !yield(i) }
+    selected
   end
 
   def my_all?
@@ -62,6 +65,12 @@ puts #just to skip a line
 print "Test My Each With Index"
 puts
 [1, 2, 3, 4, 5].my_each_with_index { | item, index | puts "Element #{item} with index #{index}" }
+puts #just to skip a line
+
+puts #just to skip a line
+print "Test My Select"
+puts
+print [1, 2, 3, 4, 2, 5].my_select { | item | item == 2 }
 puts #just to skip a line
 
 print "Test My Count"
