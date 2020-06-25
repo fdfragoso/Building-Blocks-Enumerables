@@ -99,6 +99,7 @@ puts # just to skip a line
 print 'Test My Each With Index'
 puts
 p [1, 2, 3, 4, 5].my_each_with_index { |item, index| puts "Element #{item} with index #{index}" }
+puts ([1, 2, 3, 4, 5].my_each_with_index { |item, index| puts "Element #{item} with index #{index}" })
 puts # just to skip a line
 
 puts # just to skip a line
