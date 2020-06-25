@@ -70,21 +70,6 @@ module Enumerable
   end
 end
 
-# bad
-some_method a { |val| puts val }
-
-# good
-# With parentheses, there's no ambiguity.
-some_method(a) { |val| puts val }
-
-# good
-# Operator methods require no disambiguation
-foo == bar { |b| b.baz }
-
-# good
-# Lambda arguments require no disambiguation
-foo = ->(bar) { bar.baz }
-
 # test my_each method
 puts # just to skip a line
 print 'Test My Each'
@@ -98,44 +83,43 @@ puts # just to skip a line
 puts # just to skip a line
 print 'Test My Each With Index'
 puts
-p [1, 2, 3, 4, 5].my_each_with_index { |item, index| puts "Element #{item} with index #{index}" }
 puts([1, 2, 3, 4, 5].my_each_with_index { |item, index| puts "Element #{item} with index #{index}" })
 puts # just to skip a line
 
 puts # just to skip a line
 print 'Test My Select'
 puts
-p [1, 2, 3, 4, 2, 5].my_select { |item| item == 2 }
+puts([1, 2, 3, 4, 2, 5].my_select { |item| item == 2 })
 puts # just to skip a line
 
 puts # just to skip a line
 print 'Test My All'
 puts
-p [2, 2, 2, 2, 2, 2].my_all? { |item| item == 2 } # true
-p [6, 5, 4, 3, 2, 1].my_all? { |item| item == 2 } # false
-p [].my_all? { | item | item == 2 } # true
+p([2, 2, 2, 2, 2, 2].my_all? { |item| item == 2 }) # true
+p([6, 5, 4, 3, 2, 1].my_all? { |item| item == 2 }) # false
+p([].my_all? { | item | item == 2 }) # true
 puts # just to skip a line
 
 puts # just to skip a line
 print 'Test My Any'
 puts
-p [2, 2, 2, 2, 2, 2].my_any? { |item| item == 2 } # true
-p [6, 5, 4, 3, 2, 1].my_any? { |item| item == 2 } # false
-p [].my_any? { | item | item == 2 } # true
+p([2, 2, 2, 2, 2, 2].my_any? { |item| item == 2 }) # true
+p([6, 5, 4, 3, 2, 1].my_any? { |item| item == 2 }) # false
+p([].my_any? { | item | item == 2 }) # true
 puts # just to skip a line
 
 puts # just to skip a line
 print 'Test My None'
 puts
-puts [2, 2, 2, 2, 2, 2].my_none? { |item| item == 2 } # false
-puts [6, 5, 4, 3, 2, 1].my_none? { |item| item == 2 } # false
-puts [].my_none? { |item| item == 2 } # true
+puts([2, 2, 2, 2, 2, 2].my_none? { |item| item == 2 }) # false
+puts([6, 5, 4, 3, 2, 1].my_none? { |item| item == 2 }) # false
+puts([].my_none? { |item| item == 2 }) # true
 puts # just to skip a line
 
 puts
 print 'Test My Count'
 puts
-puts [1, 2, 3, 4, 5, 2, 2, 1].my_count { |item| item == 2 }
+puts([1, 2, 3, 4, 5, 2, 2, 1].my_count { |item| item == 2 })
 puts # just to skip a line
 # count() = 8
 # count(2) = 3
@@ -145,7 +129,7 @@ puts # just to skip a line
 puts
 print 'Test My Map'
 puts
-p [1, 2, 3, 4, 5, 2, 2, 1].my_map { |item| item * 2 }
+p([1, 2, 3, 4, 5, 2, 2, 1].my_map { |item| item * 2 })
 puts # just to skip a line
 
 print 'Test My Inject'
@@ -154,9 +138,9 @@ puts # just to skip a line
 # test my_inject method
 print 'Test My Inject'
 puts
-puts [1, 2, 3, 4, 5, 2, 2, 1].my_inject { |total, element| total + element }
+puts([1, 2, 3, 4, 5, 2, 2, 1].my_inject { |total, element| total + element })
 puts # just to skip a line
 
 print 'Test Multiply ELS'
 puts
-puts [2, 4, 5].multiply_els
+puts([2, 4, 5].multiply_els)
