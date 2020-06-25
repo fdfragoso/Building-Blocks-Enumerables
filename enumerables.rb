@@ -132,9 +132,6 @@ puts
 p([1, 2, 3, 4, 5, 2, 2, 1].my_map { |item| item * 2 })
 puts # just to skip a line
 
-print 'Test My Inject'
-puts # just to skip a line
-
 # test my_inject method
 print 'Test My Inject'
 puts
