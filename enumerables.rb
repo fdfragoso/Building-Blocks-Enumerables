@@ -97,7 +97,7 @@ print 'Test My All'
 puts
 p([2, 2, 2, 2, 2, 2].my_all? { |item| item == 2 }) # true
 p([6, 5, 4, 3, 2, 1].my_all? { |item| item == 2 }) # false
-p([].my_all? { | item | item == 2 }) # true
+p([].my_all? { |item| item == 2 }) # true
 puts # just to skip a line
 
 puts # just to skip a line
@@ -105,7 +105,7 @@ print 'Test My Any'
 puts
 p([2, 2, 2, 2, 2, 2].my_any? { |item| item == 2 }) # true
 p([6, 5, 4, 3, 2, 1].my_any? { |item| item == 2 }) # false
-p([].my_any? { | item | item == 2 }) # true
+p([].my_any? { |item| item == 2 }) # true
 puts # just to skip a line
 
 puts # just to skip a line
