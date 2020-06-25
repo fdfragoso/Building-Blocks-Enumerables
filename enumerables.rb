@@ -128,7 +128,7 @@ puts #just to skip a line
 puts
 print "Test My Map"
 puts
-puts [1, 2, 3, 4, 5, 2, 2, 1].my_map { | item | item * 2 }
+p [1, 2, 3, 4, 5, 2, 2, 1].my_map { | item | item * 2 }
 puts #just to skip a line
 
 print "Test My Inject"
