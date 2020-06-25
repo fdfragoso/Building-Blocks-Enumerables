@@ -23,6 +23,9 @@ module Enumerable
   end
 
   def my_count
+    result = 0
+    self.my_each { |i| result += 1 if yield(i) }
+    result
   end
 
   def my_map
@@ -48,11 +51,20 @@ puts
 [1, 2, 3, 4, 5].my_each { | item | puts item * 2 }
 puts #just to skip a line
 
+print "Test My Count"
+puts
+puts [1, 2, 3, 4, 5, 2, 2, 1].my_count { | item | item == 2 }
+puts #just to skip a line
+#count() = 8
+#count(2) = 3
+#count(1) = 2
+#count(4) = 1
+
 print "Test My Inject"
 puts #just to skip a line
 
 #test my_inject method
-puts [1, 2, 3, 4, 5].my_inject { | total, element | total + element }
+puts [1, 2, 3, 4, 5, 2, 2, 1].my_inject { | total, element | total + element }
 puts #just to skip a line
 
 print "Test Multiply ELS"
