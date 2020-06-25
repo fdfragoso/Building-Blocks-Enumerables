@@ -1,10 +1,10 @@
-<h3 align="center">Bubble Sort Algorithm</h3>
+<h3 align="center">Building Blocks Enumerables</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/luciano-ilha/Bubble-Sort/issues)
-[![GitHub2 Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/luciano-ilha/Bubble-Sort/pulls)
+[![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/fdfragoso/Building-Blocks-Enumerables/issues)
+[![GitHub2 Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/fdfragoso/Building-Blocks-Enumerables/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -21,7 +21,7 @@
 
 
 ## 🧐 About <a name = "about"></a>
-The implementation in Ruby to the Bubble Sort Algorithm
+The implementation of Enumarables in Ruby
 
 ## 🔧 Built with<a name = "built_using"></a>
 
@@ -52,7 +52,7 @@ The implementation in Ruby to the Bubble Sort Algorithm
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/luciano-ilha/Bubble-Sort).
+Feel free to check the [issues page](https://github.com/fdfragoso/Building-Blocks-Enumerables/issues).
 
 ## 👍 Show your support
 
