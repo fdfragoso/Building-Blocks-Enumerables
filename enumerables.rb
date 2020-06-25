@@ -24,8 +24,17 @@ module Enumerable
   end
 
   def my_inject
+    result = self.first
+    self.each_with_index do | item, index |
+        next if index == 0
+        result = yield(result, item)
+    end
+    result
   end
 
   def multiply_els
   end
 end
+
+#test my_inject method
+puts [1, 2, 3, 4, 5].my_inject { | total, element | total + element }
