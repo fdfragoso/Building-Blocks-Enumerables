@@ -1,7 +1,7 @@
 module Enumerable
   def my_each
     i = 0
-    while i < self.length
+    while i < length
       yield (self[i])
       i += 1
     end
@@ -9,7 +9,7 @@ module Enumerable
 
   def my_each_with_index
     i = 0
-    while i < self.length
+    while i < length
       yield self[i], i
       i += 1
     end
@@ -17,57 +17,56 @@ module Enumerable
 
   def my_select
     selected = []
-    self.my_each { |i| selected << i unless !yield(i) }
+    my_each { |i| selected << i unless !yield(i) }
     selected
   end
 
   def my_all?
     result = true
-    self.my_each { |i| result = false unless yield(i) }
+    my_each { |i| result = false unless yield(i) }
     result
   end
 
   def my_any?
     result = false
-    self.my_each { |i| result = true if yield(i) }
+    my_each { |i| result = true if yield(i) }
     result
   end
 
   def my_none?
     result = true
-    self.my_each { |i| result = false if yield(i) }
+    my_each { |i| result = false if yield(i) }
     result
   end
 
   def my_count
     result = 0
-    self.my_each { |i| result += 1 if yield(i) }
+    my_each { |i| result += 1 if yield(i) }
     result
   end
 
-  def my_map (arr = nil)
-    if arr == nil
-      result = []
-      self.my_each { |i| result.push(yield(i)) }
-      result
+  def my_map(arr = nil)
+    result = []
+    if arr.nil?
+      my_each { |i| result.push(yield(i)) }
     else
-      result = []
-      self.my_each { |i| result.push result.call(i) }
-      result
+      my_each { |i| result.push result.call(i) }
     end
+    result
   end
 
   def my_inject
-    result = self.first
-    self.each_with_index do | item, index |
-        next if index == 0
-        result = yield(result, item)
+    result = first
+    each_with_index do |item, index|
+      next if index.zero?
+
+      result = yield(result, item)
     end
     result
   end
 
   def multiply_els
-    self.my_inject { |total, item| total * item }
+    my_inject { |total, item| total * item }
   end
 end
 
