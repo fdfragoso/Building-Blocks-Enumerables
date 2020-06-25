@@ -28,9 +28,15 @@ module Enumerable
   end
 
   def my_any?
+    result = false
+    self.my_each { |i| result = true if yield(i) }
+    result
   end
 
   def my_none?
+    result = true
+    self.my_each { |i| result = false if yield(i) }
+    result
   end
 
   def my_count
@@ -82,6 +88,22 @@ puts
 puts [2, 2, 2, 2, 2, 2].my_all? { | item | item == 2 }  #true
 puts [6, 5, 4, 3, 2, 1].my_all? { | item | item == 2 }  #false
 puts [].my_all? { | item | item == 2 }  #true
+puts #just to skip a line
+
+puts #just to skip a line
+print "Test My Any"
+puts
+puts [2, 2, 2, 2, 2, 2].my_any? { | item | item == 2 }  #true
+puts [6, 5, 4, 3, 2, 1].my_any? { | item | item == 2 }  #false
+puts [].my_any? { | item | item == 2 }  #true
+puts #just to skip a line
+
+puts #just to skip a line
+print "Test My None"
+puts
+puts [2, 2, 2, 2, 2, 2].my_none? { | item | item == 2 }  #false
+puts [6, 5, 4, 3, 2, 1].my_none? { | item | item == 2 }  #false
+puts [].my_none? { | item | item == 2 }  #true
 puts #just to skip a line
 
 puts
