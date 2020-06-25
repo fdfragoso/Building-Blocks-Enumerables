@@ -38,10 +38,23 @@ module Enumerable
   end
 
   def multiply_els
+    self.my_inject { |total, item| total * item }
   end
 end
 # test my_each method
+puts #just to skip a line
+print "Test My Each"
+puts
 [1, 2, 3, 4, 5].my_each { | item | puts item * 2 }
+puts #just to skip a line
+
+print "Test My Inject"
+puts #just to skip a line
 
 #test my_inject method
 puts [1, 2, 3, 4, 5].my_inject { | total, element | total + element }
+puts #just to skip a line
+
+print "Test Multiply ELS"
+puts
+puts [2, 4, 5].multiply_els
