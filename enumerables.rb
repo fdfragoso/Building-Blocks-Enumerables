@@ -1,5 +1,10 @@
 module Enumerable
   def my_each
+    i = 0
+    while i < self.length
+      yield (self[i])
+      i += 1
+    end
   end
 
   def my_each_with_index
@@ -35,6 +40,8 @@ module Enumerable
   def multiply_els
   end
 end
+# test my_each method
+[1, 2, 3, 4, 5].my_each { | item | puts item * 2 }
 
 #test my_inject method
 puts [1, 2, 3, 4, 5].my_inject { | total, element | total + element }
