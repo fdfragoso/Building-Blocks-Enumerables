@@ -87,7 +87,7 @@ puts # just to skip a line
 puts # just to skip a line
 print 'Test My Select'
 puts
-print [1, 2, 3, 4, 2, 5].my_select { |item| item == 2 }
+print ([1, 2, 3, 4, 2, 5].my_select { |item| item == 2 })
 puts # just to skip a line
 
 puts # just to skip a line
