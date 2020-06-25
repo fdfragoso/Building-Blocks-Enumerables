@@ -45,7 +45,16 @@ module Enumerable
     result
   end
 
-  def my_map
+  def my_map (arr = nil)
+    if arr == nil
+      result = []
+      self.my_each { |i| result.push(yield(i)) }
+      result
+    else
+      result = []
+      self.my_each { |i| result.push result.call(i) }
+      result
+    end
   end
 
   def my_inject
@@ -115,6 +124,12 @@ puts #just to skip a line
 #count(2) = 3
 #count(1) = 2
 #count(4) = 1
+
+puts
+print "Test My Map"
+puts
+puts [1, 2, 3, 4, 5, 2, 2, 1].my_map { | item | item * 2 }
+puts #just to skip a line
 
 print "Test My Inject"
 puts #just to skip a line
