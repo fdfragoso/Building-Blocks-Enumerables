@@ -87,23 +87,23 @@ puts # just to skip a line
 puts # just to skip a line
 print 'Test My Select'
 puts
-print [1, 2, 3, 4, 2, 5].my_select ({ |item| item == 2 })
+print [1, 2, 3, 4, 2, 5].my_select { |item| item == 2 }
 puts # just to skip a line
 
 puts # just to skip a line
 print 'Test My All'
 puts
-puts [2, 2, 2, 2, 2, 2].my_all? ({ |item| item == 2 }) # true
-puts [6, 5, 4, 3, 2, 1].my_all? ({ |item| item == 2 }) # false
-puts [].my_all? ({ | item | item == 2 }) # true
+puts [2, 2, 2, 2, 2, 2].my_all? { |item| item == 2 } # true
+puts [6, 5, 4, 3, 2, 1].my_all? { |item| item == 2 } # false
+puts [].my_all? { | item | item == 2 } # true
 puts # just to skip a line
 
 puts # just to skip a line
 print 'Test My Any'
 puts
-puts [2, 2, 2, 2, 2, 2].my_any? ({ |item| item == 2 }) # true
-puts [6, 5, 4, 3, 2, 1].my_any? ({ |item| item == 2 }) # false
-puts [].my_any? ({ | item | item == 2 }) # true
+puts [2, 2, 2, 2, 2, 2].my_any? { |item| item == 2 } # true
+puts [6, 5, 4, 3, 2, 1].my_any? { |item| item == 2 } # false
+puts [].my_any? { | item | item == 2 } # true
 puts # just to skip a line
 
 puts # just to skip a line
@@ -117,7 +117,7 @@ puts # just to skip a line
 puts
 print 'Test My Count'
 puts
-puts [1, 2, 3, 4, 5, 2, 2, 1].my_count ({ |item| item == 2 })
+puts [1, 2, 3, 4, 5, 2, 2, 1].my_count { |item| item == 2 }
 puts # just to skip a line
 # count() = 8
 # count(2) = 3
@@ -127,7 +127,7 @@ puts # just to skip a line
 puts
 print 'Test My Map'
 puts
-p [1, 2, 3, 4, 5, 2, 2, 1].my_map ({ |item| item * 2 })
+p [1, 2, 3, 4, 5, 2, 2, 1].my_map { |item| item * 2 }
 puts # just to skip a line
 
 print 'Test My Inject'
@@ -136,7 +136,7 @@ puts # just to skip a line
 # test my_inject method
 print 'Test My Inject'
 puts
-puts [1, 2, 3, 4, 5, 2, 2, 1].my_inject ({ |total, element| total + element })
+puts [1, 2, 3, 4, 5, 2, 2, 1].my_inject { |total, element| total + element }
 puts # just to skip a line
 
 print 'Test Multiply ELS'
