@@ -16,6 +16,8 @@ module Enumerable
   end
 
   def my_select
+    return to_enum unless block_given?
+
     selected = []
     my_each { |i| selected << i if yield(i) }
     selected
@@ -147,9 +149,11 @@ puts # just to skip a line
 puts # just to skip a line
 print 'Test My Select'
 puts
-p (0..5).select{|x| x.even?}
-#puts([1, 2, 3, 4, 2, 5].my_select { |item| item == 2 })
+p [1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]
+p [1,2,3,4,5].my_select { |num|  num.even?  }   #=> [2, 4]
 
+p [1,2,3,4,5].select
+p [1,2,3,4,5].my_select
 puts # just to skip a line
 
 puts
