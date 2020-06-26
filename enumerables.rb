@@ -1,6 +1,12 @@
 module Enumerable
-  def my_each
-    i = 0
+  def my_each(var = nil)
+    return to_enum unless block_given?
+
+    i = if var.nil?
+          0
+        else
+          var
+        end
     while i < length
       yield (self[i])
       i += 1
@@ -11,12 +17,6 @@ module Enumerable
     return to_enum unless block_given?
 
     self.length.times { |i| yield self[i], i }
-
-    #i = 0
-    #while i < length
-    #  yield(self[i], i)
-    #  i += 1
-    #end
   end
 
   def my_select
@@ -68,7 +68,6 @@ module Enumerable
     end
     result
   end
-    
     
   def my_count(*args, &block)
     if args.length == 1 && !block_given?
@@ -133,16 +132,6 @@ module Enumerable
     my_inject { |total, item| total * item }
   end
 end
-
-# test my_each method
-puts # just to skip a line
-print 'Test My Each'
-puts
-p [1, 2, 3, 4, 5].my_each {|item| item * 2}
-p [1,2,3,4,5].each {|x| x * 2}
-p [1,2,3,4,5].each
-puts # just to skip a line
-
 
 puts
 print 'Test My Map'
