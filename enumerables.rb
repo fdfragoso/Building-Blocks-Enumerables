@@ -8,11 +8,15 @@ module Enumerable
   end
 
   def my_each_with_index
-    i = 0
-    while i < length
-      yield self[i], i
-      i += 1
-    end
+    return to_enum unless block_given?
+
+    self.length.times { |i| yield self[i], i }
+
+    #i = 0
+    #while i < length
+    #  yield(self[i], i)
+    #  i += 1
+    #end
   end
 
   def my_select
@@ -139,22 +143,6 @@ p [1,2,3,4,5].each {|x| x * 2}
 p [1,2,3,4,5].each
 puts # just to skip a line
 
-# test my_each_with_index method
-puts # just to skip a line
-print 'Test My Each With Index'
-puts
-#puts([1, 2, 3, 4, 5].my_each_with_index { |item, index| puts "Element #{item} with index #{index}" })
-puts # just to skip a line
-
-puts # just to skip a line
-print 'Test My Select'
-puts
-p [1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]
-p [1,2,3,4,5].my_select { |num|  num.even?  }   #=> [2, 4]
-
-p [1,2,3,4,5].select
-p [1,2,3,4,5].my_select
-puts # just to skip a line
 
 puts
 print 'Test My Map'
