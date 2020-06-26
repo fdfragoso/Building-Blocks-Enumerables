@@ -130,26 +130,25 @@ module Enumerable
     result
   end
 
-  def my_inject
-    result = first
-    each_with_index do |item, index|
-      next if index.zero?
-
-      result = yield(result, item)
+  def my_inject(*args)
+    result = 0
+    if args.count == 0
+      self.my_each {|num|
+        args = yield(args, num)
+      }
+    else
+      args = args[0]
+      self.my_each{|num|
+        args = yield(args, num)
+      }
+      return args
     end
-    result
   end
 
   def multiply_els
     my_inject { |total, item| total * item }
   end
 end
-
-# test my_inject method
-print 'Test My Inject'
-puts
-puts([1, 2, 3, 4, 5, 2, 2, 1].my_inject { |total, element| total + element })
-puts # just to skip a line
 
 print 'Test Multiply ELS'
 puts
