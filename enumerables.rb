@@ -33,12 +33,21 @@ module Enumerable
     result
   end
 
-  def my_none?
+  def my_none?(var = nil)
     result = true
-    my_each { |i| result = false if yield(i) }
+    my_each do |item|
+      if block_given?
+        return result = false if yield(item)
+      elsif var.nil?
+        return result = false if item
+      else
+        return result = false if var === item
+      end
+    end
     result
   end
-
+    
+    
   def my_count(*args, &block)
     if args.length == 1 && !block_given?
       # use args[0]
@@ -146,19 +155,15 @@ puts # just to skip a line
 puts # just to skip a line
 print 'Test My None'
 puts
-puts([2, 2, 2, 2, 2, 2].my_none? { |item| item == 2 }) # false
-puts([6, 5, 4, 3, 2, 1].my_none? { |item| item == 2 }) # false
-puts([].my_none? { |item| item == 2 }) # true
+p %w{ant bear cat}.my_none? { |word| word.length == 5 } #=> true
+p %w{ant bear cat}.my_none? { |word| word.length >= 4 } #=> false
+p %w{ant bear cat}.my_none?(/d/)                        #=> true
+p [1, 3.14, 42].my_none?(Float)                         #=> false
+p [].my_none?                                           #=> true
+p [nil].my_none?                                        #=> true
+p [nil, false].my_none?                                 #=> true
+p [nil, false, true].my_none?                           #=> false
 puts # just to skip a line
-
-puts
-print 'Test My Count'
-puts
-#puts([1, 2, 3, 4, 5, 2, 2, 1].my_count { |item| item == 2 })
-#p [].count(2)
-p [1, 2, 3, 2, 2].my_count()
-puts # just to skip a line
-
 
 puts
 print 'Test My Map'
