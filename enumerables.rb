@@ -21,13 +21,21 @@ module Enumerable
     selected
   end
 
-  def my_all?
+  def my_all?(var = nil)
     result = true
-    my_each { |i| result = false unless yield(i) }
+    my_each do |item|
+      if block_given?
+        return result = false unless yield(item)
+      elsif var.nil?
+        return result = false unless item
+      else
+        return result = false unless var === item
+      end
+    end
     result
   end
 
-  def my_any?
+  def my_any?(var = nil)
     result = true
     my_each do |item|
       if block_given?
@@ -142,14 +150,6 @@ puts
 p (0..5).select{|x| x.even?}
 #puts([1, 2, 3, 4, 2, 5].my_select { |item| item == 2 })
 
-puts # just to skip a line
-
-puts # just to skip a line
-print 'Test My All'
-puts
-#p([2, 2, 2, 2, 2, 2].my_all? { |item| item == 2 }) # true
-#p([6, 5, 4, 3, 2, 1].my_all? { |item| item == 2 }) # false
-#p([].my_all? { |item| item == 2 }) # true
 puts # just to skip a line
 
 puts
