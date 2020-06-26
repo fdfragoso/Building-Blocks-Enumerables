@@ -28,8 +28,16 @@ module Enumerable
   end
 
   def my_any?
-    result = false
-    my_each { |i| result = true if yield(i) }
+    result = true
+    my_each do |item|
+      if block_given?
+        return result = true if yield(item)
+      elsif var.nil?
+        return result = true if item
+      else
+        return result = true if var === item
+      end
+    end
     result
   end
 
@@ -142,27 +150,6 @@ puts
 #p([2, 2, 2, 2, 2, 2].my_all? { |item| item == 2 }) # true
 #p([6, 5, 4, 3, 2, 1].my_all? { |item| item == 2 }) # false
 #p([].my_all? { |item| item == 2 }) # true
-puts # just to skip a line
-
-puts # just to skip a line
-print 'Test My Any'
-puts
-p([2, 2, 2, 2, 2, 2].my_any? { |item| item == 2 }) # true
-p([6, 5, 4, 3, 2, 1].my_any? { |item| item == 2 }) # false
-p([].my_any? { |item| item == 2 }) # true
-puts # just to skip a line
-
-puts # just to skip a line
-print 'Test My None'
-puts
-p %w{ant bear cat}.my_none? { |word| word.length == 5 } #=> true
-p %w{ant bear cat}.my_none? { |word| word.length >= 4 } #=> false
-p %w{ant bear cat}.my_none?(/d/)                        #=> true
-p [1, 3.14, 42].my_none?(Float)                         #=> false
-p [].my_none?                                           #=> true
-p [nil].my_none?                                        #=> true
-p [nil, false].my_none?                                 #=> true
-p [nil, false, true].my_none?                           #=> false
 puts # just to skip a line
 
 puts
