@@ -2,13 +2,12 @@ module Enumerable
   def my_each(var = nil)
     return to_enum unless block_given?
 
-    i = var
-    if var.nil?
-      i = 0
-    else
-      i = var
-    end
-    
+    i = if var.nil?
+          0
+        else
+          var
+        end
+
     while i < size
       yield(to_a[i])
       i += 1
@@ -74,44 +73,21 @@ module Enumerable
     end
     result
   end
-    
-  def my_count(*args, &block)
-    if args.length == 1 && !block_given?
-      # use args[0]
-      j = 0
-      for i in 0..self.length
-       if args[0] == self[i] 
-         j += 1
-       end
+
+  def my_count(var = nil)
+    result = []
+    if block_given?
+      my_each do |item|
+        result.push(item) if yield(item)
       end
-      j
-    elsif args.length == 1 && block_given?
-      # use block
-      j = 0
-      for i in 0..self.length
-        if yield(i)
-          j += 1
-        end
-      end
-      j
-    elsif args.length == 0 && !block_given?
-      # no argument/block
-      for i in 0..self.length
-      end
-      i
-    elsif args.length == 0 && block_given?
-      #use block
-      j = 0
-      for i in 0..self.length
-        if yield(i)
-          j += 1
-        end
-      end
-      j
+    elsif var.nil?
+      return length
     else
-      # raise error
-      "Error"
+      my_each do |item|
+        result.push(item) if item == var 
+      end
     end
+    result.length
   end
 
   def my_map(arr = nil)
@@ -131,17 +107,12 @@ module Enumerable
   end
 
   def my_inject(*args)
-    result = 0
-    if args.count == 0
-      self.my_each {|num|
-        args = yield(args, num)
-      }
-    else 
+    if args.count.zero?
+      my_each { |num| args = yield(args, num) }
+    else
       args = args[0]
-      self.my_each{|num| 
-        args = yield(args, num)
-      }
-      return args
+      my_each { |num| args = yield(args, num) }
+      args
     end
   end
 end
