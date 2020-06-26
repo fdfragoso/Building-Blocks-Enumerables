@@ -84,7 +84,7 @@ module Enumerable
       return length
     else
       my_each do |item|
-        result.push(item) if item == var 
+        result.push(item) if item == var
       end
     end
     result.length
