@@ -136,20 +136,16 @@ module Enumerable
       self.my_each {|num|
         args = yield(args, num)
       }
-    else
+    else 
       args = args[0]
-      self.my_each{|num|
+      self.my_each{|num| 
         args = yield(args, num)
       }
       return args
     end
   end
-
-  def multiply_els
-    my_inject { |total, item| total * item }
-  end
 end
 
-print 'Test Multiply ELS'
-puts
-puts([2, 4, 5].multiply_els)
+def multiply_els
+  my_inject { |total, item| total * item }
+end
