@@ -2,13 +2,15 @@ module Enumerable
   def my_each(var = nil)
     return to_enum unless block_given?
 
-    i = if var.nil?
-          0
-        else
-          var
-        end
-    while i < length
-      yield (self[i])
+    i = var
+    if var.nil?
+      i = 0
+    else
+      i = var
+    end
+    
+    while i < size
+      yield(to_a[i])
       i += 1
     end
   end
@@ -16,7 +18,11 @@ module Enumerable
   def my_each_with_index
     return to_enum unless block_given?
 
-    self.length.times { |i| yield self[i], i }
+    i = 0
+    while i < size
+      yield(to_a[i], i)
+      i += 1
+    end
   end
 
   def my_select
@@ -109,11 +115,17 @@ module Enumerable
   end
 
   def my_map(arr = nil)
+    return to_enum unless block_given? || arr
+
     result = []
-    if arr.nil?
-      my_each { |i| result.push(yield(i)) }
+    if block_given? && arr.nil?
+      my_each do |item|
+        result.push(yield(item))
+      end
     else
-      my_each { |i| result.push result.call(i) }
+      my_each do |item|
+        result.push(arr.call(item))
+      end
     end
     result
   end
@@ -132,12 +144,6 @@ module Enumerable
     my_inject { |total, item| total * item }
   end
 end
-
-puts
-print 'Test My Map'
-puts
-p([1, 2, 3, 4, 5, 2, 2, 1].my_map { |item| item * 2 })
-puts # just to skip a line
 
 # test my_inject method
 print 'Test My Inject'
