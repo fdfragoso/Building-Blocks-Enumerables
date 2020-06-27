@@ -1,14 +1,10 @@
+# rubocop: disable Metrics/ModuleLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 module Enumerable
-  def my_each(var = nil)
+  def my_each
     return to_enum unless block_given?
 
-    i = if var.nil?
-          0
-        else
-          var
-        end
-
-    while i < size
+    i = 0
+    while i <= size - 1
       yield(to_a[i])
       i += 1
     end
@@ -28,33 +24,36 @@ module Enumerable
     return to_enum unless block_given?
 
     selected = []
-    my_each { |i| selected << i if yield(i) }
+    my_each do |item|
+      selected.push(item) if yield(item)
+    end
     selected
   end
 
+  # rubocop: disable Style/CaseEquality, Style/IfInsideElse
   def my_all?(var = nil)
     result = true
     my_each do |item|
       if block_given?
-        return result = false unless yield(item)
+        result = false unless yield(item)
       elsif var.nil?
-        return result = false unless item
+        result = false unless item
       else
-        return result = false unless var === item
+        result = false unless var === item
       end
     end
     result
   end
 
   def my_any?(var = nil)
-    result = true
+    result = false
     my_each do |item|
       if block_given?
-        return result = true if yield(item)
+        result = true if yield(item)
       elsif var.nil?
-        return result = true if item
+        result = true if item
       else
-        return result = true if var === item
+        result = true if var === item
       end
     end
     result
@@ -64,59 +63,73 @@ module Enumerable
     result = true
     my_each do |item|
       if block_given?
-        return result = false if yield(item)
+        result = false if yield(item)
       elsif var.nil?
-        return result = false if item
+        result = false if item
       else
-        return result = false if var === item
+        result = false if var === item
       end
     end
     result
   end
 
+  # rubocop: enable Style/CaseEquality, Style/IfInsideElse
   def my_count(var = nil)
-    result = []
+    result = 0
     if block_given?
       my_each do |item|
-        result.push(item) if yield(item)
+        result += 1 if yield(item)
       end
+      result
     elsif var.nil?
-      return length
+      length
     else
       my_each do |item|
-        result.push(item) if item == var
+        result += 1 if item == var
       end
+      result
     end
-    result.length
   end
 
-  def my_map(arr = nil)
-    return to_enum unless block_given? || arr
+  def my_map(arg = nil)
+    return to_enum if arg.nil? && block_given? == false
 
-    result = []
-    if block_given? && arr.nil?
-      my_each do |item|
-        result.push(yield(item))
-      end
-    else
-      my_each do |item|
-        result.push(arr.call(item))
+    output_arr = []
+    my_each do |val|
+      if arg
+        output_arr.push(arg.call(val))
+      else
+        output_arr.push(yield(val))
       end
     end
-    result
+    output_arr
   end
 
-  def my_inject(*args)
-    if args.count.zero?
-      my_each { |num| args = yield(args, num) }
+  def my_inject(arg1 = nil, arg2 = nil)
+    if block_given?
+      my_each do |item|
+        arg1 = arg1.nil? ? to_a[0] : yield(arg1, item)
+      end
+      arg1
+
+    elsif arg1
+      i = arg2.nil? ? 1 : 0
+      total = arg2.nil? ? to_a[0] : arg1
+      operator = arg2.nil? ? arg1 : arg2
+
+      while i < size
+        total = to_a[i].send(operator, total)
+        i += 1
+      end
+      total
     else
-      args = args[0]
-      my_each { |num| args = yield(args, num) }
-      args
+      to_enum
     end
   end
 end
 
-def multiply_els
-  my_inject { |total, item| total * item }
+# rubocop: enable Metrics/ModuleLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
+def multiply_els(arr)
+  arr.my_inject('*')
 end
