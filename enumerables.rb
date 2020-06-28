@@ -8,6 +8,7 @@ module Enumerable
       yield(to_a[i])
       i += 1
     end
+    self
   end
 
   def my_each_with_index
@@ -77,18 +78,13 @@ module Enumerable
   def my_count(var = nil)
     result = 0
     if block_given?
-      my_each do |item|
-        result += 1 if yield(item)
-      end
-      result
+      my_each { |item| result += 1 if yield(item) == true }
     elsif var.nil?
-      length
+      my_each { result += 1 }
     else
-      my_each do |item|
-        result += 1 if item == var
-      end
-      result
+      my_each { |item| result += 1 if item == var }
     end
+    result
   end
 
   def my_map(arg = nil)
@@ -133,3 +129,5 @@ end
 def multiply_els(arr)
   arr.my_inject('*')
 end
+
+p (1..9).my_count
