@@ -129,5 +129,3 @@ end
 def multiply_els(arr)
   arr.my_inject('*')
 end
-
-p (1..9).my_count
