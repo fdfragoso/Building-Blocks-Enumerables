@@ -19,6 +19,7 @@ module Enumerable
       yield(to_a[i], i)
       i += 1
     end
+    self
   end
 
   def my_select
@@ -101,26 +102,27 @@ module Enumerable
     output_arr
   end
 
-  def my_inject(arg1 = nil, arg2 = nil)
-    if block_given?
-      my_each do |item|
-        arg1 = arg1.nil? ? to_a[0] : yield(arg1, item)
-      end
-      arg1
-
-    elsif arg1
-      i = arg2.nil? ? 1 : 0
-      total = arg2.nil? ? to_a[0] : arg1
-      operator = arg2.nil? ? arg1 : arg2
-
-      while i < size
-        total = to_a[i].send(operator, total)
-        i += 1
-      end
-      total
+  def my_inject(*args)
+    arr = to_a.dup
+    if args[0].nil?
+      operation = arr.shift
+    elsif args[1].nil? && !block_given?
+      symbol = args[0]
+      operation = arr.shift
+    elsif args[1].nil? && block_given?
+      operation = args[0]
     else
-      to_enum
+      operation = args[0]
+      symbol = args[1]
     end
+    arr[0..size].my_each do |elem|
+      operation = if symbol
+                    operation.send(symbol, elem)
+                  else
+                    yield(operation, elem)
+                  end
+    end
+    operation
   end
 end
 
