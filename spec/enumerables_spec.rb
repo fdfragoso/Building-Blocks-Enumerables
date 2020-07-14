@@ -108,6 +108,7 @@ RSpec.describe Enumerable do
       expect([].my_any?).not_to be true
     end
   end
+  
 
   describe '#my_none?' do
     it 'checks the condition in the given block for every' \
