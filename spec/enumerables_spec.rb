@@ -48,7 +48,7 @@ RSpec.describe Enumerable do
 
   describe '#my_select' do
     it 'returns exaclty the same as the original function when passed a block' do
-      expect(arr.my_select { |num| num.even? } ).to eql([2])
+      expect(arr.my_select(&:even?)).to eql([2])
     end
 
     it 'returns an enumerator if no block is given' do
@@ -70,7 +70,7 @@ RSpec.describe Enumerable do
     end
 
     it 'should count how many times the block condition is true' do
-      expect(arr.my_count { |num| num.even? } ).to eql(1)
+      expect(arr.my_count(&:even?)).to eql(1)
     end
   end
 
@@ -80,12 +80,12 @@ RSpec.describe Enumerable do
     end
 
     it 'returns the length of the block' do
-      expect(words.my_all? { |num| num.length >= 3} ).to eql(true)
+      expect(words.my_all? { |num| num.length >= 3 }).to eql(true)
     end
 
-     it 'returns the length of the block' do
-        expect(words2.my_all? { |num| num.length <=1 } ).to eql(false)
-     end
+    it 'returns the length of the block' do
+      expect(words2.my_all? { |num| num.length <= 1 }).to eql(false)
+    end
   end
 
   describe '#my_any?' do
@@ -94,11 +94,11 @@ RSpec.describe Enumerable do
     end
 
     it 'returns the length of the block' do
-      expect(words.my_any? { |num| num.length >= 3} ).to eql(true)
+      expect(words.my_any? { |num| num.length >= 3 }).to eql(true)
     end
 
-     it 'returns the length of the block' do
-        expect(words2.my_any? { |num| num.length <=1 } ).to eql(false)
+    it 'returns the length of the block' do
+      expect(words2.my_any? { |num| num.length <= 1 }).to eql(false)
     end
   end
 
@@ -108,11 +108,11 @@ RSpec.describe Enumerable do
     end
 
     it 'returns the length of the block' do
-      expect(words.my_none? { |num| num.length >= 5} ).to eql(true)
+      expect(words.my_none? { |num| num.length >= 5 }).to eql(true)
     end
 
     it 'returns the length of the block' do
-      expect(words2.my_none? { |num| num.length <=20 } ).to eql(false)
+      expect(words2.my_none? { |num| num.length <= 20 }).to eql(false)
     end
   end
 
@@ -120,13 +120,13 @@ RSpec.describe Enumerable do
     it 'accepts a symbol that references a block as an argument' do
       expect(arr.my_inject(:+)).to eq(6)
     end
-  
+
     it 'accepts a block' do
       expect((5..10).my_inject(1, :*)).to eq(151_200)
     end
 
     it 'accepts an argument as an initiator value well a block' do
-      expect(arr2.my_inject(1) { |product, n| product * n}).to eq(-6)
+      expect(arr2.my_inject(1) { |product, n| product * n }).to eq(-6)
     end
 
     it 'accepts an argument as an initiator value well a block' do
@@ -138,11 +138,11 @@ RSpec.describe Enumerable do
     it 'accepts a symbol that references a block as an argument' do
       expect(arr.my_map(&:to_s)).to eq(%w[1 2 3])
     end
-  
+
     it 'accepts a block and returns it as array' do
       expect(arr.my_map { |i| i * i }).to eq([1, 4, 9])
     end
-  
+
     it 'returns an item dictated by the block passed to it for every item in the array' do
       expect(arr.my_map { 'cat' }).to eql(Array.new(3, 'cat'))
     end
