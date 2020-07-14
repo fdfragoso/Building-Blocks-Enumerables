@@ -73,4 +73,18 @@ RSpec.describe Enumerable do
       expect(arr.my_count { |num| num.even? } ).to eql(1)
     end
   end
+
+  describe '#my_all?' do
+    it 'returns true if certifies the condition ' do
+      expect(arr.my_all?).to eql(true)
+    end
+
+    it 'returns the length of the block' do
+      expect(words.my_all? { |num| num.length >= 3} ).to eql(true)
+    end
+
+     it 'returns the length of the block' do
+        expect(words2.my_all? { |num| num.length <=1 } ).to eql(false)
+     end
+  end
 end
