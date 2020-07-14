@@ -48,7 +48,7 @@ RSpec.describe Enumerable do
 
   describe '#my_select' do
     it 'returns exaclty the same as the original function when passed a block' do
-      expect (arr.my_select  (&:even?) ).to eql([2])
+      expect(arr.my_select { |num| num.even? } ).to eql([2])
     end
 
     it 'returns an enumerator if no block is given' do
