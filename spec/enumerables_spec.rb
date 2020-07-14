@@ -51,6 +51,10 @@ RSpec.describe Enumerable do
       expect(arr.my_select(&:even?)).to eql([2])
     end
 
+    it 'returns an array selected from the object that called it which is defined by the passed block' do
+      expect(arr.my_select { |i| i % 3 == 0 }).to eql([3])
+    end
+
     it 'returns an enumerator if no block is given' do
       expect(arr.my_select).to be_a(Enumerator)
     end
@@ -62,57 +66,62 @@ RSpec.describe Enumerable do
 
   describe '#my_count' do
     it 'returns exaclty the number of items in the array ' do
-      expect(arr.my_count).to eql(3)
+      expect(arr.my_count).to be 3
     end
 
     it 'returns an enumerator if no block is given' do
-      expect(arr.my_count(1)).to eql(1)
+      expect(arr.my_count(1)).to eq 1
     end
 
     it 'should count how many times the block condition is true' do
-      expect(arr.my_count(&:even?)).to eql(1)
+      expect(arr.my_count(&:even?)).to be 1
     end
   end
 
   describe '#my_all?' do
-    it 'returns true if certifies the condition ' do
-      expect(arr.my_all?).to eql(true)
+    it 'checks the condition in the given block for every' \
+       'item and returns true if block returns true every time' do
+      expect(words.my_all? { |item| item.length >= 3 }).to be true
     end
 
-    it 'returns the length of the block' do
-      expect(words.my_all? { |num| num.length >= 3 }).to eql(true)
+    it 'If instead a pattern is supplied, the method returns whether pattern === element for all collection member' do
+      expect(words.my_all?(/d/)).not_to be true
+      expect(mixed.my_all?(Integer)).not_to be true
     end
 
-    it 'returns the length of the block' do
-      expect(words2.my_all? { |num| num.length <= 1 }).to eql(false)
+    it 'returns false when an empty array is given' do
+      expect([].my_all?).to be true
     end
   end
 
   describe '#my_any?' do
-    it 'returns true if certifies the condition ' do
-      expect(arr.my_any?).to eql(true)
+    it 'checks the condition in the given block for every' \
+       'item and returns true if block returns true at least one time' do
+      expect(words.my_any? { |item| item.length >= 3 }).to be true
     end
 
     it 'returns the length of the block' do
-      expect(words.my_any? { |num| num.length >= 3 }).to eql(true)
+      expect(words.my_any? { |num| num.length >= 3 }).to be true
     end
 
-    it 'returns the length of the block' do
-      expect(words2.my_any? { |num| num.length <= 1 }).to eql(false)
+    it 'returns false when an empty array is given' do
+      expect([].my_any?).not_to be true
     end
   end
 
   describe '#my_none?' do
-    it 'returns true if certifies the condition ' do
-      expect(arr.my_none?).to eql(false)
+    it 'checks the condition in the given block for every' \
+    'item and returns true if block returns false for all items' do
+      expect(words.my_none? { |item| item.length >= 3 }).not_to be true
     end
 
-    it 'returns the length of the block' do
-      expect(words.my_none? { |num| num.length >= 5 }).to eql(true)
+    it 'If instead a pattern is supplied, the method returns whether pattern !== element for any collection member' do
+      expect(words.my_none?(/d/)).to be true
+      expect(mixed.my_none?(Integer)).not_to be true
     end
 
-    it 'returns the length of the block' do
-      expect(words2.my_none? { |num| num.length <= 20 }).to eql(false)
+    it 'returns true when an empty array is given' do
+      expect([].my_none?).to be true
     end
   end
 
