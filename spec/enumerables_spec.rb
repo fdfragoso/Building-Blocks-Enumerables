@@ -59,4 +59,18 @@ RSpec.describe Enumerable do
       expect { arr.my_select('test') }.to raise_error(ArgumentError)
     end
   end
+
+  describe '#my_count' do
+    it 'returns exaclty the number of items in the array ' do
+      expect(arr.my_count).to eql(3)
+    end
+
+    it 'returns an enumerator if no block is given' do
+      expect(arr.my_count(1)).to eql(1)
+    end
+
+    it 'should count how many times the block condition is true' do
+      expect(arr.my_count { |num| num.even? } ).to eql(1)
+    end
+  end
 end
