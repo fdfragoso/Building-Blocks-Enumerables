@@ -51,7 +51,9 @@ The implementation of Enumarables in Ruby
 
 👤 **Arafat Akata**
 
-- Github: [@haraphat01](https://github.com/haraphat01
+- Github: [@haraphat01](https://github.com/haraphat01)
+- Twitter: [@haraphat01](https://twitter.com/haraphat01)
+- Linkedin: [@haraphat01](https://www.linkedin.com/in/arafat-akata/)
 
 
 ## 🤝 Contributing
