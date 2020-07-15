@@ -28,6 +28,17 @@ The implementation of Enumarables in Ruby
 - [Ruby](https://www.ruby-lang.org/) - Ruby;
 - [RSpec](https://rspec.info/) - RSpec
 
+### Prerequisites 
+
+- Ruby installed on local machine
+- Rspec installed on local machine
+- A browser (for usage or repl.it)
+
+### Usage
+
+- Fork/Clone this project to your local machine
+- Run rspec in the terminal of your root directory to run the described tests
+
 ### 🛠 Installing <a name = "installing"></a>
 
 ```
