@@ -26,6 +26,7 @@ The implementation of Enumarables in Ruby
 ## 🔧 Built with<a name = "built_using"></a>
 
 - [Ruby](https://www.ruby-lang.org/) - Ruby;
+- [RSpec](https://rspec.info/) - RSpec
 
 ### 🛠 Installing <a name = "installing"></a>
 
@@ -47,6 +48,11 @@ The implementation of Enumarables in Ruby
 - Github: [@fdfragoso](https://github.com/luciano-ilha)
 - Twitter: [@fdfragoso](https://twitter.com/CarbonellIlha)
 - Linkedin: [@fdfragoso](https://www.linkedin.com/in/luciano-ilha-carbonell-188115a0/)
+
+👤 **Arafat Akata**
+
+- Github: [@haraphat01](https://github.com/haraphat01
+
 
 ## 🤝 Contributing
 
