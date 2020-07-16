@@ -26,6 +26,18 @@ The implementation of Enumarables in Ruby
 ## 🔧 Built with<a name = "built_using"></a>
 
 - [Ruby](https://www.ruby-lang.org/) - Ruby;
+- [RSpec](https://rspec.info/) - RSpec
+
+### Prerequisites 
+
+- Ruby installed on local machine
+- Rspec installed on local machine
+- A browser (for usage or repl.it)
+
+### Usage
+
+- Fork/Clone this project to your local machine
+- Run rspec in the terminal of your root directory to run the described tests
 
 ### 🛠 Installing <a name = "installing"></a>
 
@@ -47,6 +59,13 @@ The implementation of Enumarables in Ruby
 - Github: [@fdfragoso](https://github.com/luciano-ilha)
 - Twitter: [@fdfragoso](https://twitter.com/CarbonellIlha)
 - Linkedin: [@fdfragoso](https://www.linkedin.com/in/luciano-ilha-carbonell-188115a0/)
+
+👤 **Arafat Akata**
+
+- Github: [@haraphat01](https://github.com/haraphat01)
+- Twitter: [@haraphat01](https://twitter.com/haraphat01)
+- Linkedin: [@haraphat01](https://www.linkedin.com/in/arafat-akata/)
+
 
 ## 🤝 Contributing
 
